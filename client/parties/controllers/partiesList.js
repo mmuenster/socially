@@ -1,4 +1,4 @@
-angular.module("socially").controller("PartiesListCtrl", ['$scope', '$meteor',
+angular.module("newlisApp").controller("PartiesListCtrl", ['$scope', '$meteor',
   function($scope, $meteor){
 
     $scope.parties = $meteor.collection(Parties).subscribe('parties');

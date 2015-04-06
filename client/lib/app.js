@@ -1,3 +1,6 @@
-angular.module('socially',['angular-meteor', 'ui.router']);
+angular.module('newlisApp',[
+	'angular-meteor',
+	'ui.router'
+	 ]);
 
 
