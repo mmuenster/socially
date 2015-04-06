@@ -1,6 +1,6 @@
 
 <div class="row-fluid">
-	<button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addUserModal" ng-click="setModalData({})">Add New User</button>
+	<button class="btn btn-primary btn-sm" data-toggle="modal" ng-click="setModalData({})" data-target="#addUserModal">Add New User</button>
 	<input type="search" ng-model="q" placeholder="Search users..." />
 </div>
 
@@ -8,6 +8,7 @@
 	<table class="table table-striped table-bordered table-condensed">
 	  <thead>
 	  	<td>Email</td>
+	  	<td>Username</td>
 	  	<td>Name</td>
 	  	<td>Roles</td>
 	  </thead>
@@ -16,6 +17,7 @@
 	    	<a data-toggle="modal" ng-click="setModalData(thisUser)" ng-hide="currentUser.emails[0].address==thisUser.emails[0].address" data-target="#editUserModal" >{{ thisUser.emails[0].address }}</a>
 	    	<p ng-show="currentUser.emails[0].address==thisUser.emails[0].address"> {{ thisUser.emails[0].address}}</p>
 	    </td> 
+	    <td>{{ thisUser.username }}</td>
 	    <td>{{ thisUser.profile.name }}</td>
 	    <td>{{ thisUser.roles }}</td>
 	    <td><button class="btn btn-sm btn-danger" ng-hide="currentUser.emails[0].address==thisUser.emails[0].address"  data-toggle="modal" data-target="#deleteUserModal" ng-click="setModalData(thisUser)">Delete</button></td>
@@ -37,7 +39,7 @@
         <h3 class="modal-title" id="myModalLabel">Edit User: {{modalData.email[0].address}}</h3>
       </div>
       <div class="modal-body">
-			<div class="col-md-4">
+			<div class="col-md-6">
 			<form class="form">
 
 			<!-- Text input-->
@@ -54,6 +56,15 @@
 			  <label class="control-label" for="name">Name</label>
 			  <div class="controls">
 			    <input id="name" ng-model="modalData.profile.name" name="name" type="text" placeholder="Full Name" class="form-control" required="">
+			    
+			  </div>
+			</div>
+
+			<!-- Text input-->
+			<div class="control-group">
+			  <label class="control-label" for="name">Email</label>
+			  <div class="controls">
+			    <input id="email" ng-model="modalData.emails[0].address" name="email" type="email" placeholder="email" class="form-control" required="">
 			    
 			  </div>
 			</div>
@@ -79,7 +90,7 @@
 			</form>
 			</div>
 
-			<div class="col-md-4">
+			<div class="col-md-6">
 			<form role="form">
 			  <h3>Change Password</h3>
 
@@ -100,20 +111,6 @@
 			</form>
 			</div>
 
-			<div class="col-md-4">
-			<form>
-			  <h3>Change Email</h3>
-
-			  <p class="form-group">
-			    <label>New Email:</label>
-			    <input type="text" ng-keypress="clear()" ng-model="newEmail" class="form-control" />
-			  </p>
-
-			  <button class="btn btn-primary" data-dismiss="modal" ng-click="changeEmail()">update email</button>
-			</form>
-			</div>
-
-			</div>
 			<p class="clearfix"></p>
 
 
@@ -122,6 +119,7 @@
       </div>
     </div>
   </div>
+</div>
 </div>
 
 <!-- Add User Modal -->

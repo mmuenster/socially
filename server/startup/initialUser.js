@@ -3,7 +3,7 @@
       var users = [ 
         { name:'Matt Muenster', email: 'matt.muenster@gmail.com', username: 'mmuenster', roles:['pathologist', 'admin']},
         { name:'Kay Koenig', email: 'k@k.com', username: 'kk', roles: ['admin', 'accessioning']},
-        { name:'Ned Nobody', email: 'n@n.com', username: 'nn', roles:[]}
+        { name:'Ned Nobody', email: 'n@n.com', username: 'nn', roles:['staff']}
       ];
 
       _.each(users,function(userData){
@@ -17,4 +17,24 @@
         Roles.addUsersToRoles(userid,userData.roles);
       })
     }
-   });
+
+    if(Meteor.cases==undefined) {
+      var cases = new Mongo.Collection('cases');
+      HTTP.get("https://dazzling-torch-3393.firebaseio.com/CaseData/SP14-015781.json", function (error, result) {
+      if(error) {
+          console.log('http get FAILED!');
+      } else {
+          console.log('http get SUCCESS');
+          console.log(result.content)
+          if (result.statusCode === 200) {
+            cases.insert( result.content)
+          // for ( var key in result.content) {
+          //     console.log(result.content);
+          //   }
+          //             }
+          }
+      };
+    });
+
+   };
+});

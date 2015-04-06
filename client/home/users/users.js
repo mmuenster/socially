@@ -49,15 +49,9 @@ angular.module('newlisApp')
         error('Passwords do not match');
       }
       else {
-        firebaseUtils.changePassword($scope.modalData.email, $scope.modalData.password, $scope.newpass)
+        $meteor.call('passwordSet', $scope.modalData._id, $scope.newpass)
           .then(
-            function() { 
-              var x = $scope.users.$indexFor($scope.modalData.$id);
-              $scope.users[x].password = $scope.newpass;
-              $scope.users.$save(x).then(
-                function(message) { success ("Password for user " + $scope.users[x].name + " changed sucessfully.") },
-                function(message) { error(message) }
-                )},
+            function(message) { success ("Password changes to user " + $scope.modalData.profile.name + " saved sucessfully.") },
             function(message) { error(message) }
           );
       }
