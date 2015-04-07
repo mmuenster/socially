@@ -3,5 +3,6 @@ Meteor.publish('allUsers', function publishFunction() {
 })
 
 Meteor.publish(null, function (){ 
-  return Meteor.roles.find({})
+  return Messages.find({})
 })
+

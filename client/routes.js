@@ -27,6 +27,15 @@ angular.module("newlisApp").config(['$urlRouterProvider', '$stateProvider', '$lo
             return $meteor.requireUser();
           }]}
       })
+      .state('home.chat', {
+        url: 'chat',
+        templateUrl: 'client/home/chat/chat.ng.html',
+        controller: 'ChatController',
+        resolve: {
+          "user": ["$meteor", function($meteor){
+            return $meteor.requireUser();
+          }]}
+      })
 
       // .state('partyDetails', {
       //   url: '/parties/:partyId',

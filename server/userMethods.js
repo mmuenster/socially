@@ -13,7 +13,7 @@ Meteor.methods({
         Roles.addUsersToRoles(id, user.roles)
         return id;
 	},
-
+ 
 	'log': function(){
 		if(this.userId && Roles.userIsInRole(this.userId, 'admin')){
 		console.log("Hellow world")
