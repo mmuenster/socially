@@ -18,16 +18,16 @@
       })
     }
 
-    if(Meteor.cases==undefined) {
-      var cases = new Mongo.Collection('cases');
+    if(Cases==undefined) {
       HTTP.get("https://dazzling-torch-3393.firebaseio.com/CaseData/SP14-015781.json", function (error, result) {
       if(error) {
           console.log('http get FAILED!');
       } else {
           console.log('http get SUCCESS');
-          console.log(result.content)
+          var x=EJSON.parse(result.content)
+          x._id = x.caseNumber;
           if (result.statusCode === 200) {
-            cases.insert( result.content)
+            Cases.insert(x)
           // for ( var key in result.content) {
           //     console.log(result.content);
           //   }

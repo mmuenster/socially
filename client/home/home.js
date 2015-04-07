@@ -3,7 +3,7 @@
 angular.module('newlisApp')
   .controller('HomeController', function ($scope, user, $meteor, $state) {
 
-    $scope.cases = {};
+    $scope.cases = $meteor.collection(Cases);
 
     $scope.orderBy = "receivedDate";
     $scope.reverse = false;

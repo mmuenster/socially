@@ -6,3 +6,7 @@ Meteor.publish(null, function (){
   return Messages.find({})
 })
 
+Meteor.publish(null, function (){
+	return Cases.find();
+})
+
