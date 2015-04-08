@@ -36,6 +36,15 @@ angular.module("newlisApp").config(['$urlRouterProvider', '$stateProvider', '$lo
             return $meteor.requireUser();
           }]}
       })
+      .state('home.caseEdit', {
+        url: 'caseEdit/:caseNum',
+        templateUrl: 'client/home/caseEdit/caseEdit.ng.html',
+        controller: 'CaseEditController',
+        resolve: {
+          "user": ["$meteor", function($meteor){
+            return $meteor.requireUser();
+          }]}
+      })
 
       // .state('partyDetails', {
       //   url: '/parties/:partyId',

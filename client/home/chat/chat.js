@@ -14,6 +14,27 @@ angular.module('newlisApp')
       }
     };
 
+    $scope.addCases = function() {
+      HTTP.get("https://dazzling-torch-3393.firebaseio.com/CaseData.json", function (error, result) {
+            if(error) {
+                console.log('http get FAILED!');
+            } else {
+                console.log('http get SUCCESS');
+                var y=EJSON.parse(result.content)
+                for (var key in y) { 
+                  y[key]._id = key
+                  Cases.insert(y[key])
+                //   console.log(key,y[key])// for ( var key in result.content) {
+                  //     console.log(result.content);
+                  //   }
+                  //             }
+                
+                };
+            };
+      });
+    }
+
+
     function alert(msg) {
       $scope.err = msg;
       $timeout(function() {
