@@ -9,6 +9,11 @@ angular.module("newlisApp").config(['$urlRouterProvider', '$stateProvider', '$lo
         templateUrl: 'client/login/login.ng.html',
         controller: 'LoginController',
       })
+      .state('logout', {
+        url: '/logout',
+        templateUrl: 'client/logout/logout.ng.html',
+        controller: 'LogoutController',
+      })
       .state('home', {
         url: '/',
         templateUrl: 'client/home/home.ng.html',

@@ -14,6 +14,8 @@ angular.module('newlisApp')
 	  console.log($stateParams.caseNum)
 	  $scope.caseToEdit = $meteor.object(Cases, $stateParams.caseNum, false)
 
+	  $scope.reports = $meteor.collection(Reports)
+
 	  var counter = 0;
 	  $scope.preview = false;
 	  $scope.iframeURL = "";
@@ -34,14 +36,7 @@ angular.module('newlisApp')
 		var doc = new PDFDocument();
 	    var stream = doc.pipe(blobStream());
 
-		// draw some text
-		doc.fontSize(25)
-		   .text(data.caseNumber, 100, 80)
-		   .text(data.name)
-		   .text(data.diagnosisTextArea);
-
-		// end and display the document in the iframe to the right
-		doc.end();
+		eval($scope.pdfReport)
 
 		stream.on('finish', function() {
 		  $scope.iframeURL =  $sce.trustAsResourceUrl( stream.toBlobURL('application/pdf') );

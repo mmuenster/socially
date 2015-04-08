@@ -6,6 +6,10 @@
     <button type="button" class="btn" id="saveCase" ng-click="saveCase()" accesskey="s">Save</button> 
     <button id="previewPDF" class="btn" ng-click="previewPDF(caseToEdit)" accesskey="p">Preview</button>
     <button id="signout" class="btn" ng-click="signout(caseToEdit)" accesskey="o">Signout</button>
+    <select ng-model="pdfReport" ng-init="pdfReport = reports[0].code">
+      <option ng-repeat="report in reports" value="{{report.code}}">{{report._id}}</option>
+    </select>
+   
     </div>
 
 

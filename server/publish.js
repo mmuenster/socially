@@ -10,3 +10,7 @@ Meteor.publish(null, function (){
 	return Cases.find();
 })
 
+Meteor.publish(null, function (){
+	return Reports.find();
+})
+

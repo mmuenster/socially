@@ -8,6 +8,7 @@ angular.module('newlisApp')
     }
 
     $scope.passwordLogin = function(email, password) {
+      console.log(email,password)
       $scope.err = null;
       $meteor.loginWithPassword(email, password).then(
         redirect, showError
