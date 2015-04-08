@@ -1,7 +1,7 @@
 'use strict';
  
 angular.module('newlisApp')
-  .controller('LoginController', function ($scope, $meteor, $state, $location) {
+  .controller('LoginController', ['$scope', '$meteor', '$state', '$location', function ($scope, $meteor, $state, $location) {
     
     if($meteor.waitForUser()) {
       redirect();
@@ -37,4 +37,4 @@ angular.module('newlisApp')
       $scope.err = err;
     }
 
-  });
+  }]);
