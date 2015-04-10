@@ -16,8 +16,6 @@ angular.module('newlisApp')
 		$scope.test = function() {
 			AceEditor.instance("editor",null,function(editor){
 	  			var data = $meteor.object(Cases,$scope.caseNumber)
-				var doc = new PDFDocument();
-			    var stream = doc.pipe(blobStream());
 
 				eval(editor.getValue())
 
