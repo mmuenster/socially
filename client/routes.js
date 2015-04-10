@@ -1,5 +1,5 @@
-angular.module("newlisApp").config(['$urlRouterProvider', '$stateProvider', '$locationProvider',
-  function($urlRouterProvider, $stateProvider, $locationProvider){
+angular.module("newlisApp").config(['CASE_TEMPLATES','$urlRouterProvider', '$stateProvider', '$locationProvider',
+  function(CASE_TEMPLATES, $urlRouterProvider, $stateProvider, $locationProvider){
 
     $locationProvider.html5Mode(true);
 
@@ -32,6 +32,15 @@ angular.module("newlisApp").config(['$urlRouterProvider', '$stateProvider', '$lo
             return $meteor.requireUser();
           }]}
       })
+      .state('home.pdfBuilder', {
+        url: 'pdfBuilder',
+        templateUrl: 'client/home/pdfBuilder/pdfBuilder.ng.html',
+        controller: 'PDFBuilderController',
+        resolve: {
+          "user": ["$meteor", function($meteor){
+            return $meteor.requireUser();
+          }]}
+      })
       .state('home.chat', {
         url: 'chat',
         templateUrl: 'client/home/chat/chat.ng.html',
@@ -43,7 +52,14 @@ angular.module("newlisApp").config(['$urlRouterProvider', '$stateProvider', '$lo
       })
       .state('home.caseEdit', {
         url: 'caseEdit/:caseNum',
-        templateUrl: 'client/home/caseEdit/caseEdit.ng.html',
+        templateUrl: function($stateParams) {
+          if($stateParams.caseNum=="US15-001974") { 
+            console.log("Int he US")
+            return 'client/home/caseEdit/' + CASE_TEMPLATES.US1.template;
+          } else { 
+            return 'client/home/caseEdit/' + CASE_TEMPLATES.SP1.template;
+          }
+        },
         controller: 'CaseEditController',
         resolve: {
           "user": ["$meteor", function($meteor){
@@ -69,6 +85,7 @@ angular.module("newlisApp").run(["$rootScope", "$location", function($rootScope,
   $rootScope.$on("$stateChangeError", function(event, toState, toParams, fromState, fromParams, error) {
     // We can catch the error thrown when the $requireUser promise is rejected
     // and redirect the user back to the main page
+    console.log("$stateChangeError", error)
     if (error === "AUTH_REQUIRED") {
       $location.path("/login");
     }

@@ -11,9 +11,7 @@ angular.module('newlisApp')
   .controller('CaseEditController', function ($scope, $timeout, $meteor, $stateParams, $sce, $q) {
 
   	  $scope.messages=[];
-	  console.log($stateParams.caseNum)
 	  $scope.caseToEdit = $meteor.object(Cases, $stateParams.caseNum, false)
-
 	  $scope.reports = $meteor.collection(Reports)
 
 	  var counter = 0;

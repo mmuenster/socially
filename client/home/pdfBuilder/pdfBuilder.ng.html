@@ -1,0 +1,38 @@
+  <style>
+   
+  h1 {
+    margin: 0;
+  }
+  
+  a {
+    color: blue;
+  }
+  
+  #editor {
+    width: 600px;
+    height: 775px;
+    margin-right: 0px;
+    display: inline-block;
+  }
+  
+  iframe {
+    border: 1px solid black;
+  }
+  </style>
+<div class="row">
+	Case Number: <input ng-model="caseNumber">
+</div>
+ <div class="row">
+ 	<button ng-click="test()">Test</button>
+ 	<button ng-click="newReport">New Report</button>
+ 	<button ng-click="loadReport">Load Report</button>
+ 	<button ng-click="saveReport()">Save Report</button>
+ </div>
+ <div class=row>
+	 <div class="col-md-6">
+	 	<pre id='editor'></pre>
+	 </div>
+	 <div ng-show="preview" class="col-md-6">
+	  <iframe ng-src="{{iframeURL}}" width="600" height="775"></iframe>
+	</div>
+</div>
