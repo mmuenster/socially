@@ -14,7 +14,3 @@ Meteor.publish(null, function (){
 	return Reports.find();
 })
 
-Meteor.publish(null, function (){
-	return CaseTemplates.find();
-})
-
